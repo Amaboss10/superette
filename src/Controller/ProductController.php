@@ -13,15 +13,15 @@ class ProductController extends AbstractController
     #[Route('/product', name: 'app_product')]
     public function index(EntityManagerInterface $entityManager, int $id): Response
     {
-        $product = $entityManager->getRepository(Product::class)->findBy(['id' => $id], []);
+        $products = $entityManager->getRepository(Product::class)->findBy(['id' => $id], []);
 
         //On met le $product[0] à null, comme ça le twig peut handle l'erreur
-        if(!$product[0]) {
+        if(!$products[0]) {
             $product = [null];
         }
 
         return $this->render('product/index.html.twig', [
-            'product' => $product[0],
+            'products' => $products[0],
         ]);
     }
 }
