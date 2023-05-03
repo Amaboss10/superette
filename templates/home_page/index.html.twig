@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %}Superette - Accueil{% endblock %}
+{% block body %}
+    {% if product is empty %}
+        <p>Aucun produit n'a été trouvé.</p>
+    {% else %}
+        <div class="container w-100">
+            <h1 class="text-center mt-4">Tous les produits</h1>
+            <div class="row justify-content-around flex-wrap overflow-auto">
+                {% for products in product %}
+                    <div class="card text-center w-25 mt-4 p-0">
+                        <div class="card-body">
+                            <img src="{{ asset('images/my-image.jpg') }}" alt="My Image" class="img-fluid" id="my-image" style="width: 100%;">
+
+                            <h5 class="card-title">{{ products.title }}</h5>
+                            <h6 class="card-title muted">{{ products.price }}</h6>
+                            <p class="card-text">{{ products.description }}</p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+{% endblock %}
