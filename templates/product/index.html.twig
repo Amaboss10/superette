@@ -1,7 +1,6 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Tous les produits{% endblock %}
-
 {% block body %}
 
     {% if product is empty %}
@@ -10,22 +9,22 @@
 
         <div class="container w-100">
             <h1 class="text-center mt-4">Tous les produits</h1>
+                <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+                    <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
+                        {% for products in product %}
+                            <div class="card text-center w-25 mt-4 p-0">
+                                <div class="card-body">
+                                    <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="..." class="img-fluid d-md-none ">
+                                    <h5 class="card-title">{{ products.title }}</h5>
+                                    <h6 class="card-title muted">{{ products.description }}</h6>
+                                    <p class="card-text">{{ products.price }}</p>
+                                    <a href={{ path('app_product', {'id':products.id})}} class="btn-primary"> Voir plus</a>
+                                </div>
+                            </div>
+                        {% endfor %}
 
-            <div class="row justify-content-around flex-wrap overflow-auto">
-
-                {% for products in product %}
-                    <div class="card text-center w-25 mt-4 p-0">
-                        <div class="card-body">
-                            <img src="{{ vich_uploader_asset(product, 'imageFile') }}" alt="..." class="img-fluid d-md-none ">
-                            <h5 class="card-title">{{ products.title }}</h5>
-                            <h6 class="card-title muted">{{ products.description }}</h6>
-                            <p class="card-text">{{ products.price }}</p>
-                            <a href={{ path('app_product', {'id':products.id})}} class="btn-primary"> Voir plus</a>
-                        </div>
                     </div>
-                {% endfor %}
-
-            </div>
+                </div>
         </div>
 
     {% endif %}
