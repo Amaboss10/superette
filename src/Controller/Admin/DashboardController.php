@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DashboardController extends AbstractDashboardController
 {
-    #[Route('/admin', name: 'admin')]
+    #[Route('/admin', name: 'app_admin')]
     public function index(): Response
     {
         return $this->render('admin/index.html.twig');
@@ -31,6 +31,7 @@ class DashboardController extends AbstractDashboardController
             MenuItem::linkToUrl('Accueil du Front-end', 'fa -fa-arrow-left', $this->generateUrl('app_home_page')),
             MenuItem::linkToCrud('Products', 'fas fa-list', Product::class),
             MenuItem::linkToCrud('Users', 'fas fa-user', User::class),
+            MenuItem::linkToLogout('Déconnexion', 'fa fa-fa fa-sign-out'),
         ];
 
     }

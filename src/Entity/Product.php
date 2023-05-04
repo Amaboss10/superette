@@ -87,43 +87,39 @@ class Product
         return $this;
     }
 
+    #[Vich\UploadableField(mapping: 'product_image', fileNameProperty: 'imageName')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?string $imageName = null;
 
     /**
-     * @Vich\UploadableField(mapping="product_images", fileNameProperty="file")
-     * @var File
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile|null $imageFile
      */
-    private $imageFile;
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
 
-    public function getImageFile()
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
-    public function setImageFile(File $file = null)
+    public function setImageName(?string $imageName): void
     {
-        $this->imageFile = $file;
-
-        if ($file) {
-            // It is required that at least one field changes if you are using doctrine
-            // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTime('now');
-        }
+        $this->imageName = $imageName;
     }
 
-    /**
-     * @ORM\Column(length=255)
-     */
-    private string $file;
-
-    public function getFile(): ?string
+    public function getImageName(): ?string
     {
-        return $this->file;
-    }
-
-    public function setFile(string $file): self
-    {
-        $this->file = $file;
-
-        return $this;
+        return $this->imageName;
     }
 }

@@ -10,10 +10,10 @@
                 {% for products in product %}
                     <div class="card text-center w-25 mt-4 p-0">
                         <div class="card-body">
-                            <img src="{{ asset('images/my-image.jpg') }}" alt="My Image" class="img-fluid" id="my-image" style="width: 100%;">
+                            <img src="{{ vich_uploader_asset(products,'imageFile') }}" alt="{{ products.imageName }}">
 
                             <h5 class="card-title">{{ products.title }}</h5>
-                            <h6 class="card-title muted">{{ products.price }}</h6>
+                            <h6 class="card-title muted">{{ products.price }} € </h6>
                             <p class="card-text">{{ products.description }}</p>
                         </div>
                     </div>

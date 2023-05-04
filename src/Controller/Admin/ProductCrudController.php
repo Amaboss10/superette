@@ -17,7 +17,7 @@ class ProductCrudController extends AbstractCrudController
         return Product::class;
     }
 
-   /* public function configureFields(string $pageName): iterable
+    public function configureFields(string $pageName): iterable
     {
         return[
             IdField::new('id')->hideOnForm(),
@@ -26,7 +26,7 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('description')->setLabel('Description'),
             NumberField::new('quantity')->setLabel('Quantité'),
             TextField::new('imageFile')->setFormType(VichImageType::class)->onlyWhenCreating(),
-            ImageField::new('file')->setBasePath('/images/products')->onlyOnIndex(),
+            ImageField::new('imageName')->setBasePath('/images/products')->onlyOnIndex(),
         ];
-    }*/
+    }
 }
